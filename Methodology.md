@@ -18,6 +18,7 @@ So I think I can use my contacts app as a base point for the book app!
 | Add        | n/a |
 | Delete     | n/a |
 | Link to a new page | Link to a new page |
+| n/a        | modify element (category) |
 
 
 ### Is it really as simple as copying the work we've done in class?

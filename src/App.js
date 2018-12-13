@@ -13,8 +13,32 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    books: []
+    //showSearchPage: false
   }
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
+  // IDEA: Potentially change these into `moveBook` so can change category?
+  /*
+    removeContact = (contact) => {
+      this.setState((state) => ({
+        contacts: state.contacts.filter((c) => c.id !== contact.id)
+      }))
+
+      ContactsAPI.remove(contact)
+    }
+  createContact(contact) {
+    ContactsAPI.create(contact).then(contact => {
+      this.setState(state => ({
+        contacts: state.contacts.concat([ contact ])
+      }))
+    })
+  }
+  */
 
   render() {
     return (
@@ -57,7 +81,7 @@ class BooksApp extends React.Component {
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
                             <div className="book-shelf-changer">
                               <select>
-                                <option value="move" disabled>Move to...</option>
+                                <option value="move" disabled>Move to...</option> // !keep disabled! This isn't really an option, but text.'
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
                                 <option value="read">Read</option>

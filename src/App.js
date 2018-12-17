@@ -17,33 +17,19 @@ class BooksApp extends React.Component {
     })
   }
 
-  // IDEA: Potentially change these into `moveBook` so can change category?
-  /*
-    removeContact = (contact) => {
-      this.setState((state) => ({
-        contacts: state.contacts.filter((c) => c.id !== contact.id)
-      }))
-
-      ContactsAPI.remove(contact)
-    }
-  createContact(contact) {
-    ContactsAPI.create(contact).then(contact => {
-      this.setState(state => ({
-        contacts: state.contacts.concat([ contact ])
-      }))
-    })
-  }
-  */
-
   render() {
     return (
       <div className="app">
         //link to 'home page'
         <Route exact path='/' render={() => (
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-           // NOTE: add something here (`.state`) so changes show up!
+          <div>
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+             // TODO: : add something here (`.state`) so changes show up!
+             <ListBooks books={this.state.books}
+             onShelfChange={this.onShelfChange}/>
+           </div>
         )}/>
         //link to 'search page'
         <Route path="/search" render={({ history }) => (

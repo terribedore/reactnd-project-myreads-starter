@@ -8,7 +8,7 @@ class Book extends React.Component{
 
   render() {
     const {book} = this.props;
-    let image = book.imageLinks.thumbnail
+    let image = book.imageLinks ? book.imageLinks.thumbnail : 'src/icons/book-cover_326641.svg'
     return (
       <div className="book">
         <div className="book-top">

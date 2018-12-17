@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import ListBooks from './ListBooks'
-import CreateBook from './CreateBook'
+import Search from './Search'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
@@ -10,12 +10,22 @@ class BooksApp extends React.Component {
     books: []
   }
 
-//calls to API to get all the books that are on the shelves
+  //calls to API to get all the books that are on the shelves
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
+
+  // TODO: Shoot! Need something to pass the book and shelf into a function so it can be 'moved' to a shelf.
+  onShelfChange = (book, shelf) => {
+    book.shelf = shelf
+    this.setState(state => ({
+      books: state.books.filter(b = b.id !== book.id).concat([book])
+    }))
+    BooksAPI.update(book, shelf)
+  }
+
 
   render() {
     return (

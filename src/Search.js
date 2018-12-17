@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 
-class Search extends React.Component {
+class Search extends Component {
   state = {
     searchResults: []
   }
 
-  //Keeps track of the input value
+  //Keeps track of the value inputed.
   search = (e) => {
     const query = e.target.value;
     if (!query) {
@@ -57,7 +57,14 @@ return (
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-        // TODO: add book results here. Use `.map`?
+          // TODO: add book results here. Use `.map`?
+          {this.state.searchResults &&
+            this.state.searchResults.map((book, index) => (
+              <li key={book.id + index}>
+              <Book book={book}
+              onShelfChange={this.props.onShelfChange}/>
+              </li>
+            ))}
         </ol>
       </div>
   </div>

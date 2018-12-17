@@ -24,7 +24,7 @@ class Search extends React.Component {
         this.setState({searchResults: []});
         return;
       }
-      // map over the books returned from the search API, and check if they are on the shelf or not
+      // map over the books returned from the search API, and check if they are on the shelf (or not)
       searchResults = searchResults.map((book) => {
         const bookOnShelf = this.props.books.find(b => b.id === book.id);
         book.shelf = bookOnShelf
@@ -52,11 +52,13 @@ return (
           However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
           you don't find a specific author or title. Every search is limited by search terms.
           */
-          <input type="text" placeholder="Search by title or author"/>
+          <input type="text" onChange={this.search} placeholder="Search by title or author"/>
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid"></ol>
+        <ol className="books-grid">
+        // TODO: add book results here. Use `.map`?
+        </ol>
       </div>
   </div>
   )

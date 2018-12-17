@@ -5,7 +5,6 @@ class Book extends Component{
     const shelf = e.target.value;
     this.props.onShelfChange(this.props.book, shelf);
   };
-
 }
 
 render() {

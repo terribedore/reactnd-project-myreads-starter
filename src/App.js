@@ -30,18 +30,15 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        //link to 'home page'
         <Route exact path='/' render={() => (
           <div>
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-             // TODO: : add something here (`.state`) so changes show up!
              <ListBooks books={this.state.books}
              onShelfChange={this.onShelfChange}/>
            </div>
         )}/>
-        //link to 'search page'
         <Route path="/search" render={({ history }) => (
           <Search
           onShelfChange={this.onShelfChange}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 
-class Search extends Component {
+class Search extends React.Component {
   state = {
     searchResults: []
   }

@@ -1,11 +1,11 @@
 import React from 'react'
 
-class Book extends Component{
+class Book extends React.Component{
   ChangeShelf = (e) => {
     const shelf = e.target.value;
     this.props.onShelfChange(this.props.book, shelf);
   };
-}
+
 
 render() {
   return (
@@ -160,7 +160,7 @@ render() {
         </div>
       </div>
     </div>
-  )
+  )}
 }
 
 export default Book

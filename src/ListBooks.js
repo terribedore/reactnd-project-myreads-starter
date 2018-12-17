@@ -1,83 +1,46 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
+import {Link} from 'react-router-dom'
+import BookShelf from './BookShelf'
 
-class ListBooks extends Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-    onDeleteBook: PropTypes.func.isRequired
-  }
 
-  state = {
-    query: ''
-  }
+//This is the way books will look on the home page!
+function ListBooks(props){
 
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() })
-  }
+  const { onShelfChange } = props;
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-  }
+  //Filter the books according to the shelf they belong to.
+  const currentlyReading = props.books.filter((book) => book.shelf === 'currentlyReading')
+  const wantToRead =props.books.filter((book) => book.shelf === 'wantToRead')
+  const read =props.books.filter((book) => book.shelf === 'read')
 
-  render() {
-    const { books, onDeleteBook } = this.props
-    const { query } = this.state
-
-    let showingBooks
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i') // the 'i' means 'ignore case'.
-      showingBooks = books.filter((book) => match.test(book.name))
-    } else {
-      showingBooks = books
-    }
-
-      showingBooks.sort(sortBy('name'))
-
-    return (
-      <div className='list-books'>
-        <div className='list-books-top'>
-          <input
-            className='search-books'
-            type='text'
-            placeholder='Search books'
-            value={query}
-            onChange={(event) => this.updateQuery(event.target.value)}
+  return(
+    <div className="list-books">
+      <div className="list-books-content">
+        <div>
+          <Shelf
+            bookshelfTitle='Currently Reading'
+            bookshelfBooks={currentlyReading}
+            onShelfChange={onShelfChange}
           />
-          <Link
-            to='/create'
-            className='add-book'
-          >Add Book</Link>
+
+          <Shelf
+            bookshelfTitle='Want to Read'
+            bookshelfBooks={wantToRead}
+            onShelfChange={onShelfChange}
+          />
+
+          <Shelf
+            bookshelfTitle='Read'
+            bookshelfBooks={read}
+            onShelfChange={onShelfChange}
+          />
         </div>
-
-        {showingBooks.length !== books.length && (
-          <div className='showing-books'>
-            <span>Now showing {showingBooks.length} of {books.length} total</span>
-            <button onClick={this.clearQuery}>Show all</button>
-          </div>
-        )}
-
-        <ol className='book-list'>
-          {showingBooks.map((book) => (
-            <li key={book.id} className='book-list-item'>
-              <div className='book-avatar' style={{
-                backgroundImage: `url(${book.avatarURL})`
-              }}/>
-              <div className='book-details'>
-                <p>{book.name}</p>
-                <p>{book.email}</p>
-              </div>
-              <button onClick={() => onDeleteBook(book)} className='book-remove'>
-                Remove
-              </button>
-            </li>
-          ))}
-        </ol>
       </div>
-    )
-  }
+
+      <div className="open-search">
+          <Link to="/search">Add a book</Link>
+      </div>
+    </div>
+  )
 }
 
 export default ListBooks

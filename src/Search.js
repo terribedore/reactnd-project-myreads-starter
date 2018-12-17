@@ -42,7 +42,7 @@ class Search extends React.Component {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <Link className="close-search" to="/">Close</Link>
+        <Link className="close-search" to="/">Return To Your Lists</Link>
           <div className="search-books-input-wrapper">
             {/*
             NOTES: The search from BooksAPI is limited to a particular set of search terms.

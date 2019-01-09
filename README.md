@@ -26,7 +26,7 @@ To get started right away:
 ## Usage
 
 Move books from one category to another; click the down arrow of a visible book.
-Browse and Search the list; click the '+' button.
+Browse and Search the list; click the '+' button (will be taken to new page).
 
 
 ## License
